@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Даниил Синицын](https://up.htmlacademy.ru/javascript/19/user/928917).
-* Наставник: `Неизвестно`.
+* Наставник: [Ярослав Ермилов](https://htmlacademy.ru/profile/id776985).
 
 ---
 
