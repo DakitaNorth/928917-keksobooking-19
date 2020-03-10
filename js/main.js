@@ -87,7 +87,7 @@ var offersArrayGeneration = function (offersNumber) {
         randomInteger(0, offerTypeArray.length - 1), randomInteger(roomsMin, roomsMax),
         randomInteger(guestsMin, guestsMax), randomInteger(0, offerCheckArray.length - 1), randomInteger(0, offerCheckArray.length - 1),
         offerDescriptionArray[randomInteger(0, offersNumber - 1)],
-        offerPhotosArray[randomInteger(0, offerPhotosArray.length - 1)], randomInteger(40, 1200), randomInteger(130, 630));
+        offerPhotosArray, randomInteger(40, 1200), randomInteger(130, 630));
   }
   return offersArray;
 };
@@ -120,7 +120,13 @@ var cardGeneration = function () {
   var newCard = newCardTemplate.cloneNode(true);
   var newOfferArray = offersArrayGeneration(PIN_NUMBER);
   var newCardFeatures = newCard.querySelector('.popup__features').children;
+  var newCardPhotos = newCard.querySelector('.popup__photos');
 
+  var cardPhotoCollection = newCard.querySelector('.popup__photos').children;
+
+  var newCardPhoto = newCard.querySelector('.popup__photo');
+
+  newCard.querySelector('.popup__avatar').src = newOfferArray[0].author.avatar;
   newCard.querySelector('.popup__title').textContent = newOfferArray[0].offer.title;
   newCard.querySelector('.popup__text--address').textContent = newOfferArray[0].offer.address;
   newCard.querySelector('.popup__text--price').textContent = newOfferArray[0].offer.price;
@@ -131,6 +137,14 @@ var cardGeneration = function () {
 
   for (var u = 0; u < newCardFeatures.length; u++) {
     newCardFeatures[u].textContent = newOfferArray[0].offer.features[u];
+  }
+
+  for (var y = 0; y < offerPhotosArray.length - 1; y++) {
+    newCardPhotos.appendChild(newCardPhoto.cloneNode(true));
+  }
+
+  for (var j = 0; j < cardPhotoCollection.length; j++) {
+    cardPhotoCollection[j].src = newOfferArray[0].offer.photos[j];
   }
 
   return newCard;
