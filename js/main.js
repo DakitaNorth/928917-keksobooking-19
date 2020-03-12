@@ -22,11 +22,11 @@ var placeNotForGuests = capacityOptions[capacityOptions.length - 1];
 var map = document.querySelector('.map');
 var mapPinsList = document.querySelector('.map__pins');
 var mapPinsTemplate = document.querySelector('#pin').content;
-/* var mapFilter = document.querySelector('.map__filters-container');*/
+var mapFilter = document.querySelector('.map__filters-container');
 var mainPin = document.querySelector('.map__pin--main');
 
-/* var cardTemplate = document.querySelector('#card').content;
-var newCardTemplate = cardTemplate.querySelector('.map__card');*/
+var cardTemplate = document.querySelector('#card').content;
+var newCardTemplate = cardTemplate.querySelector('.map__card');
 
 for (var w = 0; w < formFieldsets.length; w++) {
   formFieldsets[w].setAttribute('disabled', 'disabled');
@@ -48,12 +48,10 @@ var unlockInterface = function () {
 };
 
 function onPinMainClick(e) {
-  if (typeof e === 'object') {
-    switch (e.button) {
-      case 0:
-        unlockInterface();
-        mainPinСoordinates();
-    }
+  switch (e.button) {
+    case 0:
+      unlockInterface();
+      mainPinСoordinates();
   }
 }
 
@@ -131,12 +129,12 @@ var offerTypeArray = [
   'bungalo'
 ];
 
-/* var offerTypeObject = {
+var offerTypeObject = {
   palace: 'Дворец',
   flat: 'Квартира',
   house: 'Дом',
   bungalo: 'Бунгало'
-};*/
+};
 
 var offerTitleArray = [];
 var offerDescriptionArray = [];
@@ -198,7 +196,6 @@ for (var i = 0; i < PIN_NUMBER; i++) {
 }
 mapPinsList.appendChild(fragmentPins);
 
-/*
 var cardGeneration = function () {
   var newCard = newCardTemplate.cloneNode(true);
   var newOfferArray = offersArrayGeneration(PIN_NUMBER);
@@ -239,5 +236,3 @@ for (var z = 0; z < 1; z++) {
   fragmentCards.appendChild(cardGeneration());
 }
 map.insertBefore(fragmentCards, mapFilter);
-
-*/
