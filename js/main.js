@@ -14,6 +14,11 @@ var formFieldsets = form.children;
 var formFilters = document.querySelector('.map__filters').children;
 var adressField = form.querySelector('#address');
 
+var roomField = form.querySelector('#room_number');
+var roomOptions = roomField.children;
+var capacityOptions = form.querySelector('#capacity').children;
+var placeNotForGuests = capacityOptions[capacityOptions.length - 1];
+
 var map = document.querySelector('.map');
 var mapPinsList = document.querySelector('.map__pins');
 var mapPinsTemplate = document.querySelector('#pin').content;
@@ -69,6 +74,29 @@ var mainPinСoordinates = function () {
   adressField.value = 'x: ' + posX + ' ' + 'y: ' + posY;
   adressField.setAttribute('readonly', 'readonly');
 };
+
+var capacityOptionsDisabled = function () {
+  for (var i = 0; i < roomOptions.length; i++) {
+    capacityOptions[i].disabled = true;
+  }
+};
+
+capacityOptionsDisabled();
+
+roomField.addEventListener('change', function () {
+  var value = this.value;
+  capacityOptionsDisabled();
+  for (var i = 0; i <= value - 1; i++) {
+    if (value < 100) {
+      capacityOptions[i].disabled = false;
+      capacityOptions[i].selected = true;
+    }
+    if (value === 100 || i > 3) {
+      placeNotForGuests.disabled = false;
+      placeNotForGuests.selected = true;
+    }
+  }
+});
 
 function randomInteger(min, max) {
   var rand = min + Math.random() * (max + 1 - min);
