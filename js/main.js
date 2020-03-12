@@ -80,7 +80,7 @@ var capacityOptionsDisabled = function () {
 };
 
 roomField.addEventListener('change', function () {
-  var value = this.value;
+  var value = roomField.value;
   capacityOptionsDisabled();
   for (var i = 0; i <= value - 1; i++) {
     if (value < 100) {
