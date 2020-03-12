@@ -79,8 +79,6 @@ var capacityOptionsDisabled = function () {
   }
 };
 
-capacityOptionsDisabled();
-
 roomField.addEventListener('change', function () {
   var value = this.value;
   capacityOptionsDisabled();
