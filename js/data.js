@@ -1,11 +1,11 @@
 'use strict';
 (function () {
-  var priceMin = 0;
-  var priceMax = 10000;
-  var roomsMin = 1;
-  var roomsMax = 100;
-  var guestsMin = 1;
-  var guestsMax = 100;
+  var PRICE_MIN = 0;
+  var PRICE_MAX = 10000;
+  var ROOMS_MIN = 1;
+  var ROOMS_MAX = 100;
+  var GUESTS_MIN = 1;
+  var GUESTS_MAX = 100;
 
   function randomInteger(min, max) {
     var rand = min + Math.random() * (max + 1 - min);
@@ -75,9 +75,9 @@
     offersArrayGeneration: function (offersNumber) {
       var offersArray = [];
       for (var i = 0; i < offersNumber; i++) {
-        offersArray[i] = offerGeneration(offersNumber, i + 1, randomInteger(priceMin, priceMax),
-            randomInteger(0, offerTypeArray.length - 1), randomInteger(roomsMin, roomsMax),
-            randomInteger(guestsMin, guestsMax), randomInteger(0, offerCheckArray.length - 1), randomInteger(0, offerCheckArray.length - 1),
+        offersArray[i] = offerGeneration(offersNumber, i + 1, randomInteger(PRICE_MIN, PRICE_MAX),
+            randomInteger(0, offerTypeArray.length - 1), randomInteger(ROOMS_MIN, ROOMS_MAX),
+            randomInteger(GUESTS_MIN, GUESTS_MAX), randomInteger(0, offerCheckArray.length - 1), randomInteger(0, offerCheckArray.length - 1),
             offerDescriptionArray[randomInteger(0, offersNumber - 1)],
             offerPhotosArray, randomInteger(40, 1160), randomInteger(130, 630));
       }
