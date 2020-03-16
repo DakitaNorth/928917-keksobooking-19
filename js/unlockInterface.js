@@ -30,18 +30,18 @@
     }
   }
 
-  window.mainPin.addEventListener('click', onPinMainClick);
+  window.mainPin.addEventListener('mousedown', onPinMainClick);
   window.mainPin.addEventListener('keydown', onPinMainKeydown);
 
   window.mainPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
-    /* var limits = {
-      top: window.map.map.offsetTop,
+    var limits = {
+      top: 130,
       right: window.map.map.offsetWidth + window.map.map.offsetLeft - window.mainPin.offsetWidth,
-      bottom: window.map.map.offsetHeight + window.map.map.offsetTop - window.mainPin.offsetHeight,
+      bottom: 630,
       left: window.map.map.offsetLeft
-    };*/
+    };
 
     var startCoords = {
       x: evt.clientX,
@@ -60,6 +60,19 @@
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
+
+      if (startCoords.x < limits.left) {
+        window.mainPin.style.left = 0 + 'px';
+      }
+      if (startCoords.x > limits.right) {
+        window.mainPin.style.left = 1135 + 'px';
+      }
+      if (startCoords.y < limits.top) {
+        window.mainPin.style.top = 130 + 'px';
+      }
+      if (startCoords.y > limits.bottom) {
+        window.mainPin.style.top = 630 + 'px';
+      }
 
       window.mainPin.style.top = (window.mainPin.offsetTop - shift.y) + 'px';
       window.mainPin.style.left = (window.mainPin.offsetLeft - shift.x) + 'px';
