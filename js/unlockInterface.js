@@ -38,7 +38,6 @@
 
   window.mainPin.addEventListener('mousedown', onPinMainClick);
   window.mainPin.addEventListener('keydown', onPinMainKeydown);
-
   window.mainPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
