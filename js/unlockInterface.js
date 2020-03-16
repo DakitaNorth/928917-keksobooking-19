@@ -67,21 +67,24 @@
         y: moveEvt.clientY
       };
 
+      var newX = window.mainPin.offsetLeft - shift.x;
+      var newY = window.mainPin.offsetTop - shift.y;
+
       if (startCoords.x < limits.left) {
-        window.mainPin.style.left = 0 + 'px';
+        newX = 0;
       }
       if (startCoords.x > limits.right) {
-        window.mainPin.style.left = 1135 + 'px';
+        newX = 1135;
       }
       if (startCoords.y < limits.top) {
-        window.mainPin.style.top = 130 + 'px';
+        newY = 130;
       }
       if (startCoords.y > limits.bottom) {
-        window.mainPin.style.top = 630 + 'px';
+        newY = 630;
       }
 
-      window.mainPin.style.top = (window.mainPin.offsetTop - shift.y) + 'px';
-      window.mainPin.style.left = (window.mainPin.offsetLeft - shift.x) + 'px';
+      window.mainPin.style.top = newY + 'px';
+      window.mainPin.style.left = newX + 'px';
     };
 
     var onMouseUp = function (upEvt) {
