@@ -9,13 +9,13 @@
 
   window.map = {
     map: document.querySelector('.map'),
-    addingPins: function() {
+    addingPins: function () {
       for (var i = 0; i < window.PIN_NUMBER; i++) {
         fragmentPins.appendChild(window.pin.pinGeneration(window.data.offersArrayGeneration(window.PIN_NUMBER)));
       }
       window.pin.mapPinsList.appendChild(fragmentPins);
     },
-    addingCards: function() {
+    addingCards: function () {
       for (var z = 0; z < 1; z++) {
         fragmentCards.appendChild(window.cardGeneration());
       }

@@ -13,14 +13,15 @@
     }
     window.map.map.classList.remove('map--faded');
     window.form.form.classList.remove('ad-form--disabled');
-    window.map.addingPins();
-    window.map.addingCards();
   };
 
   function onPinMainClick(e) {
     switch (e.button) {
       case 0:
         unlockInterface();
+        if (window.pin.mapPinsList.children.length === 2) {
+          window.map.addingPins();
+        }
         window.form.mainPinСoordinates();
     }
   }
@@ -28,6 +29,9 @@
   function onPinMainKeydown(q) {
     if (q.key === ENTER_BUTTON) {
       unlockInterface();
+      if (window.pin.mapPinsList.children.length === 2) {
+        window.map.addingPins();
+      }
       window.form.mainPinСoordinates();
     }
   }
