@@ -13,6 +13,8 @@
     }
     window.map.map.classList.remove('map--faded');
     window.form.form.classList.remove('ad-form--disabled');
+    window.map.addingPins();
+    window.map.addingCards();
   };
 
   function onPinMainClick(e) {
