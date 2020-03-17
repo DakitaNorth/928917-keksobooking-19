@@ -55,6 +55,7 @@
 
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
+      window.form.mainPinСoordinates();
 
       var shift = {
         x: startCoords.x - moveEvt.clientX,
