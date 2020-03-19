@@ -6,7 +6,7 @@
   var adressField = form.querySelector('#address');
 
   var titleField = form.querySelector('#title');
-  var typehHousingField = form.querySelector('#type');
+  var typeHousingField = form.querySelector('#type');
   var housingPrice = form.querySelector('#price');
   var timeinField = form.querySelector('#timein');
   var timeoutField = form.querySelector('#timeout');
@@ -49,8 +49,8 @@
     }
   });
 
-  typehHousingField.addEventListener('change', function () {
-    var value = typehHousingField.value;
+  typeHousingField.addEventListener('change', function () {
+    var value = typeHousingField.value;
     if (value === 'bungalo') {
       housingPrice.setAttribute('min', 0);
       housingPrice.placeholder = 0;

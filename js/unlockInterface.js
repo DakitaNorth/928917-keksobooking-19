@@ -21,6 +21,8 @@
         unlockInterface();
         if (window.pin.mapPinsList.children.length === 2) {
           window.map.addingPins();
+          window.map.addingCards();
+          window.cardOpen();
         }
         window.form.mainPinСoordinates();
     }
@@ -31,13 +33,31 @@
       unlockInterface();
       if (window.pin.mapPinsList.children.length === 2) {
         window.map.addingPins();
+        window.map.addingCards();
+        window.cardOpen();
       }
       window.form.mainPinСoordinates();
     }
   }
 
-  window.mainPin.addEventListener('mousedown', onPinMainClick);
-  window.mainPin.addEventListener('keydown', onPinMainKeydown);
+  var onSuccess = function () {
+    window.mainPin.addEventListener('mousedown', onPinMainClick);
+    window.mainPin.addEventListener('keydown', onPinMainKeydown);
+  };
+
+  var onError = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '16px';
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  window.load(onSuccess, onError);
+
   window.mainPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
