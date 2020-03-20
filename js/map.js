@@ -23,9 +23,9 @@
     },
     removalPins: function () {
       var pinsCollection = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-      pinsCollection.forEach(function (pinsCollection) {
-        window.pin.mapPinsList.removeChild(pinsCollection);
-      });
+      for (var i = 0; i < pinsCollection.length; i++) {
+        window.pin.mapPinsList.removeChild(pinsCollection[i]);
+      }
     }
   };
 })();
