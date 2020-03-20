@@ -39,10 +39,8 @@
     xhr.addEventListener('load', function () {
       if (xhr.status === STATUS_CODE.OK) {
         onSuccess(xhr.response);
-        console.log(xhr.response);
       } else {
         onError(xhr.response);
-        console.log(xhr.response);
       }
     });
 
