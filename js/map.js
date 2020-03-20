@@ -20,6 +20,12 @@
         fragmentCards.appendChild(window.cardGeneration(window.data.offersArrayGeneration(window.PIN_NUMBER))[z]);
       }
       map.insertBefore(fragmentCards, window.form.mapFilter);
+    },
+    removalPins: function () {
+      var pinsCollection = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+      for (var i = 0; i < pinsCollection.length; i++) {
+        window.pin.mapPinsList.removeChild(pinsCollection[i]);
+      }
     }
   };
 })();

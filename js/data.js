@@ -37,11 +37,6 @@
             window.findings[i].offer.features, window.findings[i].offer.description, window.findings[i].offer.photos, window.findings[i].location.x, window.findings[i].location.y);
       }
       return offersArray;
-    },
-    offerPhotosArray: [
-      'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
-      'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
-      'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
-    ]
+    }
   };
 })();
