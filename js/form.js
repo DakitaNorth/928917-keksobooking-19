@@ -15,6 +15,19 @@
   var capacityOptions = form.querySelector('#capacity').children;
   var placeNotForGuests = capacityOptions[capacityOptions.length - 1];
 
+  var mainContainer = document.querySelector('main');
+  var successTemplate = document.querySelector('#success').content;
+  var successMessage = successTemplate.cloneNode(true);
+  var errorTemplate = document.querySelector('#error').content;
+  var errorMessage = errorTemplate.cloneNode(true);
+
+  var resetFormButton = form.querySelector('.ad-form__reset');
+
+  mainContainer.appendChild(successMessage);
+  document.querySelector('.success').classList.add('hidden');
+  mainContainer.appendChild(errorMessage);
+  document.querySelector('.error').classList.add('hidden');
+
   titleField.addEventListener('invalid', function () {
     if (titleField.validity.tooShort) {
       titleField.setCustomValidity('Минимальное значение - 30 символов');
@@ -69,13 +82,17 @@
     }
   });
 
-  for (var w = 0; w < formFieldsets.length; w++) {
-    formFieldsets[w].setAttribute('disabled', 'disabled');
-  }
+  var formDisabled = function () {
+    for (var w = 0; w < formFieldsets.length; w++) {
+      formFieldsets[w].setAttribute('disabled', 'disabled');
+    }
 
-  for (var b = 0; b < formFilters.length; b++) {
-    formFilters[b].setAttribute('disabled', 'disabled');
-  }
+    for (var b = 0; b < formFilters.length; b++) {
+      formFilters[b].setAttribute('disabled', 'disabled');
+    }
+  };
+
+  formDisabled();
 
   var optionsDisabled = function (firstOptions, secondOptions) {
     for (var i = 0; i < firstOptions.length; i++) {
@@ -96,6 +113,51 @@
         placeNotForGuests.selected = true;
       }
     }
+  });
+
+  var onErrorUpload = function () {
+    document.querySelector('.error').classList.remove('hidden');
+
+    window.addEventListener('click', function () {
+      document.querySelector('.error').classList.add('hidden');
+    });
+
+    window.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === window.ESC_BUTTON) {
+        document.querySelector('.error').classList.add('hidden');
+      }
+    });
+  };
+
+  var onSuccessUpload = function () {
+    window.lockInterface();
+    window.map.removalPins();
+
+    housingPrice.setAttribute('min', 1000);
+    housingPrice.placeholder = 1000;
+
+    document.querySelector('.success').classList.remove('hidden');
+
+    window.addEventListener('click', function () {
+      document.querySelector('.success').classList.add('hidden');
+    });
+
+    window.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === window.ESC_BUTTON) {
+        document.querySelector('.success').classList.add('hidden');
+      }
+    });
+    form.reset();
+  };
+
+  form.addEventListener('submit', function (evt) {
+    window.upload(new FormData(form), onSuccessUpload, onErrorUpload);
+    evt.preventDefault();
+  });
+
+  resetFormButton.addEventListener('click', function () {
+    housingPrice.setAttribute('min', 1000);
+    housingPrice.placeholder = 1000;
   });
 
   window.form = {

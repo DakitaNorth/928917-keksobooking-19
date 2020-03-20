@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  var ESC_BUTTON = 27;
+  window.ESC_BUTTON = 27;
 
   window.cardOpen = function () {
     var pinsCollection = document.querySelectorAll('.map__pin:not(.map__pin--main)');
@@ -32,7 +32,7 @@
     }
 
     window.addEventListener('keydown', function (evt) {
-      if (evt.keyCode === ESC_BUTTON) {
+      if (evt.keyCode === window.ESC_BUTTON) {
         utilClose(cardsCollecton);
       }
     });

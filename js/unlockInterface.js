@@ -9,10 +9,21 @@
       window.form.formFieldsets[z].removeAttribute('disabled');
     }
     for (var g = 0; g < window.form.formFilters.length; g++) {
-      window.form.formFilters[g].removeAttribute('disabled', 'disabled');
+      window.form.formFilters[g].removeAttribute('disabled');
     }
     window.map.map.classList.remove('map--faded');
     window.form.form.classList.remove('ad-form--disabled');
+  };
+
+  window.lockInterface = function () {
+    for (var z = 0; z < window.form.formFieldsets.length; z++) {
+      window.form.formFieldsets[z].setAttribute('disabled', 'disabled');
+    }
+    for (var g = 0; g < window.form.formFilters.length; g++) {
+      window.form.formFilters[g].setAttribute('disabled', 'disabled');
+    }
+    window.map.map.classList.add('map--faded');
+    window.form.form.classList.add('ad-form--disabled');
   };
 
   function onPinMainClick(e) {

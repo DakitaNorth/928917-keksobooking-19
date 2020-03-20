@@ -34,7 +34,11 @@
         newCardFeatures[u].textContent = oneOffer[i].offer.features[u];
       }
 
-      for (var y = 0; y < window.data.offerPhotosArray.length - 1; y++) {
+      if (oneOffer[i].offer.photos.length === 0) {
+        newCardPhotos.removeChild(newCardPhoto);
+      }
+
+      for (var y = 0; y < oneOffer[i].offer.photos.length - 1; y++) {
         newCardPhotos.appendChild(newCardPhoto.cloneNode(true));
       }
 
