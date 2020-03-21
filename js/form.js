@@ -31,18 +31,29 @@
   titleField.addEventListener('invalid', function () {
     if (titleField.validity.tooShort) {
       titleField.setCustomValidity('Минимальное значение - 30 символов');
+      titleField.style = 'border: 1px solid red';
+      onErrorUpload();
     } else if (titleField.validity.tooLong) {
       titleField.setCustomValidity('Максимальное значение - 100 символов');
+      onErrorUpload();
     } else if (titleField.validity.valueMissing) {
       titleField.setCustomValidity('Обязательное поле');
+      titleField.style = 'border: 1px solid red';
+      onErrorUpload();
     } else {
       titleField.setCustomValidity('');
+      titleField.style = 'border: none';
     }
   });
 
   housingPrice.addEventListener('invalid', function () {
     if (housingPrice.validity.valueMissing) {
       housingPrice.setCustomValidity('Обязательное поле');
+      housingPrice.style = 'border: 1px solid red';
+      onErrorUpload();
+    } else if (housingPrice.validity.rangeUnderflow) {
+      housingPrice.style = 'border: 1px solid red';
+      onErrorUpload();
     } else {
       housingPrice.setCustomValidity('');
     }
@@ -130,11 +141,14 @@
   };
 
   var onSuccessUpload = function () {
+    var cardsCollecton = document.querySelectorAll('.map__card');
+
     window.lockInterface();
     window.map.removalPins();
 
     housingPrice.setAttribute('min', 1000);
     housingPrice.placeholder = 1000;
+    housingPrice.style = 'border: none';
 
     document.querySelector('.success').classList.remove('hidden');
 
@@ -148,6 +162,9 @@
       }
     });
     form.reset();
+    window.mapFilter.reset();
+    window.showCard.utilClose(cardsCollecton);
+    window.mainPin.style = 'left: 570px; top: 375px;';
   };
 
   form.addEventListener('submit', function (evt) {
@@ -156,8 +173,21 @@
   });
 
   resetFormButton.addEventListener('click', function () {
+    var cardsCollecton = document.querySelectorAll('.map__card');
+
+    window.lockInterface();
+    window.map.removalPins();
+
     housingPrice.setAttribute('min', 1000);
     housingPrice.placeholder = 1000;
+    housingPrice.style = 'border: none';
+
+    titleField.style = 'border: none';
+
+    form.reset();
+    window.mapFilter.reset();
+    window.showCard.utilClose(cardsCollecton);
+    window.mainPin.style = 'left: 570px; top: 375px;';
   });
 
   window.form = {

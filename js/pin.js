@@ -3,9 +3,9 @@
   var mapPinsTemplate = document.querySelector('#pin').content;
 
   window.pin = {
-    pinGeneration: function (oneOffer) {
+    pinGeneration: function (oneOffer, offerNumber) {
       var pinArray = [];
-      for (var i = 0; i < window.PIN_NUMBER; i++) {
+      for (var i = 0; i < offerNumber; i++) {
         var pinElement = mapPinsTemplate.cloneNode(true);
         pinElement.querySelector('.map__pin').style = 'left: ' + oneOffer[i].location.x + 'px; top:' + oneOffer[i].location.y + 'px;';
         pinElement.querySelector('img').src = oneOffer[i].author.avatar;
