@@ -31,9 +31,10 @@
       case 0:
         unlockInterface();
         if (window.pin.mapPinsList.children.length === 2) {
+          window.filterPins();
           window.map.addingPins();
           window.map.addingCards();
-          window.cardOpen();
+          window.showCard.cardOpen();
         }
         window.form.mainPinСoordinates();
     }
@@ -43,9 +44,10 @@
     if (q.key === ENTER_BUTTON) {
       unlockInterface();
       if (window.pin.mapPinsList.children.length === 2) {
+        window.filterPins();
         window.map.addingPins();
         window.map.addingCards();
-        window.cardOpen();
+        window.showCard.cardOpen();
       }
       window.form.mainPinСoordinates();
     }
