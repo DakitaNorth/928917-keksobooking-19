@@ -10,11 +10,23 @@
     bungalo: 'Бунгало'
   };
 
+  var getFeatures = function (oneOffer) {
+    var listFragment = document.createDocumentFragment();
+    var newList = document.createElement('ul');
+    newList.className = 'popup__features';
+    for (var k = 0; k < oneOffer.offer.features.length; k++) {
+      var newElementList = document.createElement('li');
+      newElementList.className = 'popup__feature ' + 'popup__feature--' + oneOffer.offer.features[k];
+      listFragment.appendChild(newElementList);
+    }
+    newList.appendChild(listFragment);
+    return newList;
+  };
+
   window.cardGeneration = function (oneOffer) {
     var cardArray = [];
     for (var i = 0; i < oneOffer.length; i++) {
       var newCard = newCardTemplate.cloneNode(true);
-      var newCardFeatures = newCard.querySelector('.popup__features').children;
       var newCardPhotos = newCard.querySelector('.popup__photos');
 
       var cardPhotoCollection = newCard.querySelector('.popup__photos').children;
@@ -29,10 +41,7 @@
       newCard.querySelector('.popup__text--capacity').textContent = oneOffer[i].offer.rooms + ' комнаты для ' + oneOffer[i].offer.guests + ' гостей';
       newCard.querySelector('.popup__text--time').textContent = 'Заезд после ' + oneOffer[i].offer.checkin + ', выезд до ' + oneOffer[i].offer.checkout;
       newCard.querySelector('.popup__description').textContent = oneOffer[i].offer.description;
-
-      for (var u = 0; u < newCardFeatures.length; u++) {
-        newCardFeatures[u].textContent = oneOffer[i].offer.features[u];
-      }
+      newCard.querySelector('.popup__features').replaceWith(getFeatures(oneOffer[i]));
 
       if (oneOffer[i].offer.photos.length === 0) {
         newCardPhotos.removeChild(newCardPhoto);
