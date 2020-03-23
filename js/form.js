@@ -28,7 +28,7 @@
   mainContainer.appendChild(errorMessage);
   document.querySelector('.error').classList.add('hidden');
 
-  titleField.addEventListener('invalid', function () {
+  titleField.addEventListener('change', function () {
     if (titleField.validity.tooShort) {
       titleField.setCustomValidity('Минимальное значение - 30 символов');
       titleField.style = 'border: 1px solid red';
@@ -43,7 +43,7 @@
     }
   });
 
-  housingPrice.addEventListener('invalid', function () {
+  housingPrice.addEventListener('change', function () {
     if (housingPrice.validity.valueMissing) {
       housingPrice.setCustomValidity('Обязательное поле');
       housingPrice.style = 'border: 1px solid red';
