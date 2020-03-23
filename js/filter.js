@@ -24,138 +24,103 @@
 
       var newArray = [];
 
-      switch (typeValue) {
-        case 'any':
-          for (var i = 0; i < window.findings.length; i++) {
-            newArray.push(window.findings[i]);
-          }
-          break;
-        case 'flat':
-          for (var k = 0; k < window.findings.length; k++) {
-            if (window.findings[k].offer.type === 'flat') {
-              newArray.push(window.findings[k]);
-            }
-          }
-          break;
-        case 'palace':
-          for (var l = 0; l < window.findings.length; l++) {
-            if (window.findings[l].offer.type === 'palace') {
-              newArray.push(window.findings[l]);
-            }
-          }
-          break;
-        case 'house':
-          for (var h = 0; h < window.findings.length; h++) {
-            if (window.findings[h].offer.type === 'house') {
-              newArray.push(window.findings[h]);
-            }
-          }
-          break;
-        case 'bungalo':
-          for (var g = 0; g < window.findings.length; g++) {
-            if (window.findings[g].offer.type === 'bungalo') {
-              newArray.push(window.findings[g]);
-              if (newArray.length === 5) {
-                break;
+      for (var k = 0; k < window.findings.length; k++) {
+        if (typeValue !== 'any' && window.findings[k].offer.type !== typeValue) {
+          continue;
+        }
+
+        if (priceValue !== 'any') {
+          switch (priceValue) {
+            case 'middle':
+              if (window.findings[k].offer.price < 10000 || window.findings[k].offer.price > 50000) {
+                continue;
               }
-            }
+              break;
+            case 'low':
+              if (window.findings[k].offer.price > 10000) {
+                continue;
+              }
+              break;
+            case 'high':
+              if (window.findings[k].offer.price < 50000) {
+                continue;
+              }
+              break;
           }
-          break;
-      }
-      switch (priceValue) {
-        case 'any':
-          newArray = newArray;
-          break;
-        case 'middle':
-          newArray = newArray.filter(function (it) {
-            return it.offer.price > 10000;
-          });
-          newArray = newArray.filter(function (it) {
-            return it.offer.price < 50000;
-          });
-          break;
-        case 'low':
-          for (var n = 0; n < newArray.length; n++) {
-            if (newArray[n].offer.price > 10000) {
-              newArray.push(window.findings[k]);
-            }
+        }
+
+        if (roomsValue !== 'any') {
+          switch (roomsValue) {
+            case '1':
+              if (window.findings[k].offer.rooms !== 1) {
+                continue;
+              }
+              break;
+            case '2':
+              if (window.findings[k].offer.rooms !== 2) {
+                continue;
+              }
+              break;
+            case '3':
+              if (window.findings[k].offer.rooms !== 3) {
+                continue;
+              }
+              break;
           }
-          break;
-        case 'high':
-          newArray = newArray.filter(function (it) {
-            return it.offer.price > 50000;
-          });
-          break;
-      }
-      switch (roomsValue) {
-        case 'any':
-          newArray = newArray;
-          break;
-        case '1':
-          newArray = newArray.filter(function (it) {
-            return it.offer.rooms === 1;
-          });
-          break;
-        case '2':
-          newArray = newArray.filter(function (it) {
-            return it.offer.rooms === 2;
-          });
-          break;
-        case '3':
-          newArray = newArray.filter(function (it) {
-            return it.offer.rooms === 3;
-          });
-          break;
-      }
-      switch (guestsValue) {
-        case 'any':
-          newArray = newArray;
-          break;
-        case '2':
-          newArray = newArray.filter(function (it) {
-            return it.offer.guests === 2;
-          });
-          break;
-        case '1':
-          newArray = newArray.filter(function (it) {
-            return it.offer.guests === 1;
-          });
-          break;
-        case '0':
-          newArray = newArray.filter(function (it) {
-            return it.offer.guests === 0;
-          });
-          break;
-      }
-      if (filterWifi.checked) {
-        newArray = newArray.filter(function (it) {
-          return it.offer.features.includes('wifi');
-        });
-      }
-      if (filterDishwasher.checked) {
-        newArray = newArray.filter(function (it) {
-          return it.offer.features.includes('dishwasher');
-        });
-      }
-      if (filterParking.checked) {
-        newArray = newArray.filter(function (it) {
-          return it.offer.features.includes('parking');
-        });
-      }
-      if (filterWasher.checked) {
-        newArray = newArray.filter(function (it) {
-          return it.offer.features.includes('washer');
-        });
-      }
-      if (filterElevator.checked) {
-        newArray = newArray.filter(function (it) {
-          return it.offer.features.includes('elevator');
-        });
-      }
-      if (filterConditioner.checked) {
-        newArray = newArray.filter(function (it) {
-          return it.offer.features.includes('conditioner');
-        });
+        }
+
+        if (guestsValue !== 'any') {
+          switch (guestsValue) {
+            case '2':
+              if (window.findings[k].offer.guests !== 2) {
+                continue;
+              }
+              break;
+            case '1':
+              if (window.findings[k].offer.guests !== 1) {
+                continue;
+              }
+              break;
+            case '0':
+              if (window.findings[k].offer.guests !== 0) {
+                continue;
+              }
+              break;
+          }
+        }
+
+        if (filterWifi.checked) {
+          if (window.findings[k].offer.features.includes('wifi') === false) {
+            continue;
+          }
+        }
+        if (filterDishwasher.checked) {
+          if (window.findings[k].offer.features.includes('dishwasher') === false) {
+            continue;
+          }
+        }
+        if (filterParking.checked) {
+          if (window.findings[k].offer.features.includes('parking') === false) {
+            continue;
+          }
+        }
+        if (filterWasher.checked) {
+          if (window.findings[k].offer.features.includes('washer') === false) {
+            continue;
+          }
+        }
+        if (filterElevator.checked) {
+          if (window.findings[k].offer.features.includes('elevator') === false) {
+            continue;
+          }
+        }
+        if (filterConditioner.checked) {
+          if (window.findings[k].offer.features.includes('conditioner') === false) {
+            continue;
+          }
+        }
+
+        newArray.push(window.findings[k]);
       }
 
       var customAdding = function () {
