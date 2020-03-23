@@ -32,14 +32,11 @@
     if (titleField.validity.tooShort) {
       titleField.setCustomValidity('Минимальное значение - 30 символов');
       titleField.style = 'border: 1px solid red';
-      onErrorUpload();
     } else if (titleField.validity.tooLong) {
       titleField.setCustomValidity('Максимальное значение - 100 символов');
-      onErrorUpload();
     } else if (titleField.validity.valueMissing) {
       titleField.setCustomValidity('Обязательное поле');
       titleField.style = 'border: 1px solid red';
-      onErrorUpload();
     } else {
       titleField.setCustomValidity('');
       titleField.style = 'border: none';
@@ -50,10 +47,8 @@
     if (housingPrice.validity.valueMissing) {
       housingPrice.setCustomValidity('Обязательное поле');
       housingPrice.style = 'border: 1px solid red';
-      onErrorUpload();
     } else if (housingPrice.validity.rangeUnderflow) {
       housingPrice.style = 'border: 1px solid red';
-      onErrorUpload();
     } else {
       housingPrice.setCustomValidity('');
     }
@@ -133,11 +128,14 @@
       document.querySelector('.error').classList.add('hidden');
     });
 
-    window.addEventListener('keydown', function (evt) {
+    var onPressEscErrorPopup = function (evt) {
       if (evt.keyCode === window.ESC_BUTTON) {
         document.querySelector('.error').classList.add('hidden');
+        window.removeEventListener('keydown', onPressEscErrorPopup);
       }
-    });
+    };
+
+    window.addEventListener('keydown', onPressEscErrorPopup);
   };
 
   var onSuccessUpload = function () {
@@ -156,11 +154,14 @@
       document.querySelector('.success').classList.add('hidden');
     });
 
-    window.addEventListener('keydown', function (evt) {
+    var onPressEscSuccessPopup = function (evt) {
       if (evt.keyCode === window.ESC_BUTTON) {
         document.querySelector('.success').classList.add('hidden');
+        window.removeEventListener('keydown', onPressEscSuccessPopup);
       }
-    });
+    };
+
+    window.addEventListener('keydown', onPressEscSuccessPopup);
     form.reset();
     window.mapFilter.reset();
     window.showCard.utilClose(cardsCollecton);

@@ -20,8 +20,8 @@
     offerObject.offer.features = oneOffer.offer.features;
     offerObject.offer.description = oneOffer.offer.description;
     offerObject.offer.photos = oneOffer.offer.photos;
-    offerObject.location.x = oneOffer.location.x;
-    offerObject.location.y = oneOffer.location.y;
+    offerObject.location.x = oneOffer.location.x - 25;
+    offerObject.location.y = oneOffer.location.y - 70;
 
     return offerObject;
   };

@@ -26,29 +26,40 @@
 
       switch (typeValue) {
         case 'any':
-          for (var i = 0; i < 5; i++) {
-            newArray[i] = window.findings[i];
+          for (var i = 0; i < window.findings.length; i++) {
+            newArray.push(window.findings[i]);
           }
           break;
         case 'flat':
-          newArray = window.findings.filter(function (it) {
-            return it.offer.type === 'flat';
-          });
+          for (var k = 0; k < window.findings.length; k++) {
+            if (window.findings[k].offer.type === 'flat') {
+              newArray.push(window.findings[k]);
+            }
+          }
           break;
         case 'palace':
-          newArray = window.findings.filter(function (it) {
-            return it.offer.type === 'palace';
-          });
+          for (var l = 0; l < window.findings.length; l++) {
+            if (window.findings[l].offer.type === 'palace') {
+              newArray.push(window.findings[l]);
+            }
+          }
           break;
         case 'house':
-          newArray = window.findings.filter(function (it) {
-            return it.offer.type === 'house';
-          });
+          for (var h = 0; h < window.findings.length; h++) {
+            if (window.findings[h].offer.type === 'house') {
+              newArray.push(window.findings[h]);
+            }
+          }
           break;
         case 'bungalo':
-          newArray = window.findings.filter(function (it) {
-            return it.offer.type === 'bungalo';
-          });
+          for (var g = 0; g < window.findings.length; g++) {
+            if (window.findings[g].offer.type === 'bungalo') {
+              newArray.push(window.findings[g]);
+              if (newArray.length === 5) {
+                break;
+              }
+            }
+          }
           break;
       }
       switch (priceValue) {
@@ -64,9 +75,11 @@
           });
           break;
         case 'low':
-          newArray = newArray.filter(function (it) {
-            return it.offer.price < 10000;
-          });
+          for (var n = 0; n < newArray.length; n++) {
+            if (newArray[n].offer.price > 10000) {
+              newArray.push(window.findings[k]);
+            }
+          }
           break;
         case 'high':
           newArray = newArray.filter(function (it) {
@@ -148,8 +161,13 @@
       var customAdding = function () {
         window.map.removalPins();
         window.map.removalCards();
-        for (var h = 0; h < newArray.length; h++) {
-          filterFragmentPins.appendChild(window.pin.pinGeneration(window.data.offersArrayGeneration(newArray.length, newArray), newArray.length)[h]);
+        if (newArray.length > 5) {
+          while (newArray.length !== 5) {
+            newArray.pop();
+          }
+        }
+        for (var q = 0; q < newArray.length; q++) {
+          filterFragmentPins.appendChild(window.pin.pinGeneration(window.data.offersArrayGeneration(newArray.length, newArray), newArray.length)[q]);
         }
         window.pin.mapPinsList.appendChild(filterFragmentPins);
         for (var j = 0; j < newArray.length; j++) {
