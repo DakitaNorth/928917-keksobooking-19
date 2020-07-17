@@ -40,11 +40,14 @@
         );
       }
 
-      window.addEventListener('keydown', function (evt) {
+      var onPressEscDown = function (evt) {
         if (evt.keyCode === window.ESC_BUTTON) {
           utilClose(cardsCollecton);
+          window.removeEventListener('keydown', onPressEscDown);
         }
-      });
+      };
+
+      window.addEventListener('keydown', onPressEscDown);
     },
     utilClose: function (array) {
       for (var i = 0; i < array.length; i++) {

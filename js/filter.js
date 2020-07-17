@@ -1,5 +1,9 @@
 'use strict';
 (function () {
+  var MIN_PRICE = 10000;
+  var MAX_PRICE = 50000;
+  var MAX_ARRAY_LENGTH = 5;
+
   window.mapFilter = document.querySelector('.map__filters');
   var filterHousingType = window.mapFilter.querySelector('#housing-type');
   var filterHousingPrice = window.mapFilter.querySelector('#housing-price');
@@ -32,17 +36,17 @@
         if (priceValue !== 'any') {
           switch (priceValue) {
             case 'middle':
-              if (window.findings[k].offer.price < 10000 || window.findings[k].offer.price > 50000) {
+              if (window.findings[k].offer.price < MIN_PRICE || window.findings[k].offer.price > MAX_PRICE) {
                 continue;
               }
               break;
             case 'low':
-              if (window.findings[k].offer.price > 10000) {
+              if (window.findings[k].offer.price > MIN_PRICE) {
                 continue;
               }
               break;
             case 'high':
-              if (window.findings[k].offer.price < 50000) {
+              if (window.findings[k].offer.price < MAX_PRICE) {
                 continue;
               }
               break;
@@ -121,12 +125,16 @@
         }
 
         newArray.push(window.findings[k]);
+        console.log(newArray.length);
+        if (newArray.length > 4) {
+          break;
+        }
       }
 
       var customAdding = function () {
         window.map.removalPins();
         window.map.removalCards();
-        if (newArray.length > 5) {
+        if (newArray.length > MAX_ARRAY_LENGTH) {
           while (newArray.length !== 5) {
             newArray.pop();
           }
