@@ -3,7 +3,7 @@
   var mapPinsTemplate = document.querySelector('#pin').content;
 
   window.pin = {
-    pinGeneration: function (oneOffer, offerNumber) {
+    markerGeneration: function (oneOffer, offerNumber) {
       var pinArray = [];
       for (var i = 0; i < offerNumber; i++) {
         var pinElement = mapPinsTemplate.cloneNode(true);

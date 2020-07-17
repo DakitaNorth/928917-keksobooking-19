@@ -125,7 +125,7 @@
         }
 
         newArray.push(window.findings[k]);
-        
+
         if (newArray.length > 4) {
           break;
         }
@@ -140,7 +140,7 @@
           }
         }
         for (var q = 0; q < newArray.length; q++) {
-          filterFragmentPins.appendChild(window.pin.pinGeneration(window.data.offersArrayGeneration(newArray.length, newArray), newArray.length)[q]);
+          filterFragmentPins.appendChild(window.pin.markerGeneration(window.data.offersArrayGeneration(newArray.length, newArray), newArray.length)[q]);
         }
         window.pin.mapPinsList.appendChild(filterFragmentPins);
         for (var j = 0; j < newArray.length; j++) {

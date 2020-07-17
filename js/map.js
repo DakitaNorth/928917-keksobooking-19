@@ -11,7 +11,7 @@
     map: document.querySelector('.map'),
     addingPins: function () {
       for (var i = 0; i < window.PIN_NUMBER; i++) {
-        fragmentPins.appendChild(window.pin.pinGeneration(window.data.offersArrayGeneration(window.PIN_NUMBER, window.findings), window.PIN_NUMBER)[i]);
+        fragmentPins.appendChild(window.pin.markerGeneration(window.data.offersArrayGeneration(window.PIN_NUMBER, window.findings), window.PIN_NUMBER)[i]);
       }
       window.pin.mapPinsList.appendChild(fragmentPins);
     },
