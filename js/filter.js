@@ -125,7 +125,7 @@
         }
 
         newArray.push(window.findings[k]);
-        console.log(newArray.length);
+        
         if (newArray.length > 4) {
           break;
         }

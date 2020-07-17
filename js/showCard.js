@@ -23,12 +23,20 @@
 
       utilClose(cardsCollecton);
 
+      var onPressEscDown = function (evt) {
+        if (evt.keyCode === window.ESC_BUTTON) {
+          utilClose(cardsCollecton);
+          window.removeEventListener('keydown', onPressEscDown);
+        }
+      };
+
       for (var h = 0; h < pinsCollection.length; h++) {
         pinsCollection[h].addEventListener('click', function (index) {
           utilClose(cardsCollecton);
           utilPinStyle(pinsCollection);
           pinsCollection[index].classList.add('map__pin--active');
           cardsCollecton[index].classList.remove('hidden');
+          window.addEventListener('keydown', onPressEscDown);
         }.bind(null, h)
         );
       }
@@ -39,15 +47,6 @@
         }.bind(null, s)
         );
       }
-
-      var onPressEscDown = function (evt) {
-        if (evt.keyCode === window.ESC_BUTTON) {
-          utilClose(cardsCollecton);
-          window.removeEventListener('keydown', onPressEscDown);
-        }
-      };
-
-      window.addEventListener('keydown', onPressEscDown);
     },
     utilClose: function (array) {
       for (var i = 0; i < array.length; i++) {

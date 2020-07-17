@@ -10,7 +10,7 @@
     bungalo: 'Бунгало'
   };
 
-  var getFeatures = function (oneOffer) {
+  var featuresGeneration = function (oneOffer) {
     var listFragment = document.createDocumentFragment();
     var newList = document.createElement('ul');
     newList.className = 'popup__features';
@@ -41,7 +41,7 @@
       newCard.querySelector('.popup__text--capacity').textContent = oneOffer[i].offer.rooms + ' комнаты для ' + oneOffer[i].offer.guests + ' гостей';
       newCard.querySelector('.popup__text--time').textContent = 'Заезд после ' + oneOffer[i].offer.checkin + ', выезд до ' + oneOffer[i].offer.checkout;
       newCard.querySelector('.popup__description').textContent = oneOffer[i].offer.description;
-      newCard.querySelector('.popup__features').replaceWith(getFeatures(oneOffer[i]));
+      newCard.querySelector('.popup__features').replaceWith(featuresGeneration(oneOffer[i]));
 
       if (oneOffer[i].offer.photos.length === 0) {
         newCardPhotos.removeChild(newCardPhoto);
